@@ -18,7 +18,7 @@ const ResponsiveMenu = ({openNav, setOpenNav, logoutHandler}) => {
         <div className="flex items-center justify-start gap-3">
           {user ? (
             <Avatar className="w-14 h-14">
-              <AvatarImage src={user.photoUrl || userLogo} size={50} />
+              <AvatarImage src={user?.photoUrl || userLogo} size={50} />
             </Avatar>
           ) : (
             <FaUserCircle size={50} className="" />
