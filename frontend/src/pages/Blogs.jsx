@@ -1,6 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import API from "@/lib/api"
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,7 +12,7 @@ const Blogs = () => {
   useEffect(()=>{
     const getAllPublishedBlogs = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/v1/blog/get-published-blogs`, {
+        const res = await API.get(`/api/v1/blog/get-published-blogs`, {
           withCredentials: true
         })
         if(res.data.success) {

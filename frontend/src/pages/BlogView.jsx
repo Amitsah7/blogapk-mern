@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import API from "@/lib/api"
 import { Bookmark, MessageSquare, Share2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
@@ -64,8 +64,8 @@ const BlogView = () => {
   const likeOrDislikeHandler = async () => {
     try {
       const action = liked ? "dislike" : "like";
-      const res = await axios(
-        `http://localhost:4000/api/v1/blog/${selectedBlog._id}/${action}`,
+      const res = await API(
+        `/api/v1/blog/${selectedBlog._id}/${action}`,
         { withCredentials: true },
       );
       if (res.data.success) {

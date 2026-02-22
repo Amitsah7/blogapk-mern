@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../redux/themeSlice";
 import { toast } from "sonner";
-import axios from "axios";
+import API from "@/lib/api"
 import { setUser } from "../redux/authSlice";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger
@@ -43,7 +43,7 @@ const Navbar = () => {
 
   const logoutHandler = async ()=> {
     try {
-      const res = await axios.get(`http://localhost:4000/api/v1/user/logout`, {
+      const res = await API.get(`/api/v1/user/logout`, {
         withCredentials: true
       })
       if(res.data.success) {

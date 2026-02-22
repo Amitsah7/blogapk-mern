@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { setLoading } from "@/redux/authSlice";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import API from "@/lib/api"
 import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +27,7 @@ const CreateBlog = () => {
     const createBlogHandler = async()=> {
         try {
             dispatch(setLoading(true))
-            const res = await axios.post(`http://localhost:4000/api/v1/blog/`, {title, category}, {
+            const res = await API.post(`/api/v1/blog/`, {title, category}, {
                 headers: {
                     "Content-Type": "application/json",
                 },

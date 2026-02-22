@@ -1,5 +1,5 @@
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import API from "@/lib/api"
 import { BarChart3, Eye, MessageSquare, ThumbsUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const TotalProperty = () => {
 
     const getOwnBlog = async () => {
         try {
-           const res = await axios.get(`http://localhost:4000/api/v1/blog/get-own-blogs`, {
+           const res = await API.get(`/api/v1/blog/get-own-blogs`, {
             withCredentials: true
            })
            if(res.data.success) {
@@ -26,7 +26,7 @@ const TotalProperty = () => {
 
     const getTotalComments = async () => {
         try {
-           const res = await axios.get(`http://localhost:4000/api/v1/comment/my-blogs/comments`, {
+           const res = await API.get(`/api/v1/comment/my-blogs/comments`, {
             withCredentials: true
            })
            if(res.data.success) {
@@ -39,7 +39,7 @@ const TotalProperty = () => {
 
     const getTotalLikes = async () => {
         try {
-           const res = await axios.get(`http://localhost:4000/api/v1/blog/my-blogs/likes`, {
+           const res = await API.get(`/api/v1/blog/my-blogs/likes`, {
             withCredentials: true
            })
            if(res.data.success) {

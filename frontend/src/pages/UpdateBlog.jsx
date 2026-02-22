@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { setLoading } from "@/redux/authSlice";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import API from "@/lib/api"
 import JoditEditor from "jodit-react";
 import { Loader2 } from "lucide-react";
 import React, { useRef, useState } from "react";
@@ -64,7 +64,7 @@ const UpdateBlog = () => {
     formData.append("file", blogData.thumbnail);
     try {
       dispatch(setLoading(true));
-      const res = await axios.put(`http://localhost:4000/api/v1/blog/${id}`, formData, {
+      const res = await API.put(`/api/v1/blog/${id}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -87,7 +87,7 @@ const UpdateBlog = () => {
     console.log("action", action);
 
     try {
-      const res = await axios.patch(`http://localhost:4000/api/v1/blog/${id}`, {
+      const res = await API.patch(`/api/v1/blog/${id}`, {
           params: {
             action,
           },
@@ -108,7 +108,7 @@ const UpdateBlog = () => {
 
   const deleteBlog = async () => {
     try {
-      const res = await axios.delete(`http://localhost:4000/api/v1/blog/delete/${id}`, { 
+      const res = await API.delete(`/api/v1/blog/delete/${id}`, { 
         withCredentials: true },
       );
       if (res.data.success) {

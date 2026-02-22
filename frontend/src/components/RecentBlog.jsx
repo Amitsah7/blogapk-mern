@@ -1,5 +1,5 @@
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import API from "@/lib/api"
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ const RecentBlog = () => {
     useEffect(() => {
         const getAllPublishedBlogs = async () => {
         try {
-            const res = await axios.get(`http://localhost:4000/api/v1/blog/get-published-blogs`, {
+            const res = await API.get(`/api/v1/blog/get-published-blogs`, {
                 withCredentials: true,
             },
             );

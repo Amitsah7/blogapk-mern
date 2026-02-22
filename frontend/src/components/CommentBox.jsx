@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { BsThreeDots } from "react-icons/bs";
-import axios from "axios";
+import API from "@/lib/api"
 import { setComment } from "@/redux/commentSlice";
 import { toast } from "sonner";
 import { setBlog } from "@/redux/blogSlice";
@@ -46,7 +46,7 @@ const CommentBox = ({ selectedBlog }) => {
   useEffect(() => {
     const getAllCommentsOfBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/v1/comment/${selectedBlog._id}/comment/all`);
+        const res = await API.get(`/api/v1/comment/${selectedBlog._id}/comment/all`);
         const data = res.data.comments;
         dispatch(setComment(data));
       } catch (error) {
@@ -58,7 +58,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const commentHandler = async () => {
     try {
-      const res = await axios.post(`http://localhost:4000/api/v1/comment/${selectedBlog._id}/create`, { content }, {
+      const res = await API.post(`/api/v1/comment/${selectedBlog._id}/create`, { content }, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -89,7 +89,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const deleteComment = async (commentId) => {
     try {
-      const res = await axios.delete(`http://localhost:4000/api/v1/comment/${commentId}/delete`, {
+      const res = await API.delete(`/api/v1/comment/${commentId}/delete`, {
           withCredentials: true,
         },
       );
@@ -108,7 +108,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const editCommentHandler = async (commentId) => {
     try {
-      const res = await axios.put(`http://localhost:4000/api/v1/comment/${commentId}/edit`, { content: editedContent }, {
+      const res = await API.put(`/api/v1/comment/${commentId}/edit`, { content: editedContent }, {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json",
@@ -133,7 +133,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const likeCommentHandler = async (commentId) => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/v1/comment/${commentId}/like`, {
+      const res = await API.get(`/api/v1/comment/${commentId}/like`, {
           withCredentials: true,
         },
       );

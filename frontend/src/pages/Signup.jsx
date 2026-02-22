@@ -7,7 +7,7 @@ import { Button } from "../components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import axios from "axios";
+import API from "@/lib/api"
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../redux/authSlice";
 
@@ -38,7 +38,7 @@ const Signup = () => {
 
     try {
       dispatch(setLoading(true))
-      const res = await axios.post(`http://localhost:4000/api/v1/user/register`, user, {
+      const res = await API.post(`/api/v1/user/register`, user, {
         headers: {
           "Content-Type": "application/json"
         },

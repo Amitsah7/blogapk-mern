@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import axios from "axios";
+import API from "@/lib/api"
 import { Eye } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ const Comments = () => {
 
   const getTotalComments = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/v1/comment/my-blogs/comments`, {
+      const res = await API.get(`/api/v1/comment/my-blogs/comments`, {
         withCredentials: true,
       });
       if (res.data.success) {

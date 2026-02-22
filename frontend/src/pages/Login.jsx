@@ -6,7 +6,7 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import axios from "axios";
+import API from "@/lib/api"
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "../redux/authSlice";
@@ -35,7 +35,7 @@ const Login = () => {
 
     try {
       dispatch(setLoading(true))
-      const res = await axios.post(`http://localhost:4000/api/v1/user/login`, input, {
+      const res = await API.post(`/api/v1/user/login`, input, {
         headers: {
           "Content-Type": "application/json"
         },

@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { toast } from "sonner";
 import { Edit, Trash2 } from "lucide-react";
+import API from "@/lib/api"
 
 const YourBlog = () => {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ const YourBlog = () => {
 
   const getOwnBlog = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/v1/blog/get-own-blogs`, { withCredentials: true })
+      const res = await API.get(`/api/v1/blog/get-own-blogs`, { withCredentials: true })
       if (res.data.success) {
           dispatch(setBlog(res.data.blogs))
       }
@@ -30,7 +30,7 @@ const YourBlog = () => {
 
   const deleteBlog = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:4000/api/v1/blog/delete/${id}`, { 
+      const res = await API.delete(`/api/v1/blog/delete/${id}`, { 
         withCredentials: true 
       })
       if (res.data.success) {
@@ -92,9 +92,6 @@ const YourBlog = () => {
                   <TableCell>{item.category}</TableCell>
                   <TableCell className="">{formatDate(index)}</TableCell>
                   <TableCell className="text-center">
-                    {/* <Eye className='cursor-pointer' onClick={() => navigate(`/blogs/${item._id}`)} />
-                    <Edit className='cursor-pointer' onClick={() => navigate(`/dashboard/write-blog/${item._id}`)} />
-                    <Trash2 className='cursor-pointer' onClick={() => deleteBlog(item._id)} /> */}
 
                     <DropdownMenu>
                       <DropdownMenuTrigger className="cursor-pointer">
