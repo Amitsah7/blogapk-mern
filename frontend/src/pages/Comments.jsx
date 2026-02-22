@@ -47,7 +47,7 @@ const Comments = () => {
                     <h1 className="w-[60px] truncate md:w-full">{comment.postId.title}</h1>
                   </TableCell>
                   <TableCell>{comment.content}</TableCell>
-                  <TableCell className="">{comment.userId.firstName}</TableCell>
+                  <TableCell className="">{comment.userId?.firstName}</TableCell>
                   <TableCell className="text-right flex gap-3 items-center justify-center">
                     <Eye
                       className="cursor-pointer"

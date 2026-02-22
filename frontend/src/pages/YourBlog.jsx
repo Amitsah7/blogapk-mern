@@ -75,7 +75,6 @@ const YourBlog = () => {
             <TableBody className="overflow-x-auto ">
               {blog?.map((item, index) => (
                 <TableRow key={index}>
-                  {/* <TableCell className="font-medium">{item.author.firstName}</TableCell> */}
                   <TableCell className="flex gap-4 items-center">
                     <img
                       src={item.thumbnail}

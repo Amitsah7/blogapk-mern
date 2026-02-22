@@ -162,7 +162,7 @@ const CommentBox = ({ selectedBlog }) => {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <h3 className="font-semibold">
-          {user.firstName} {user.lastName}
+          {user?.firstName} {user?.lastName}
         </h3>
       </div>
       <div className="flex gap-3">

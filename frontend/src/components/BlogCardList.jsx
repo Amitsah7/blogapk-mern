@@ -13,9 +13,6 @@ const BlogCardList = ({blog}) => {
           alt=""
           className="rounded-lg md:w-[300px] hover:scale-105 transition-all"
         />
-        {/* <p className="text-xs  mt-2">
-                By {blog.author.firstName} | {blog.category} | {formattedDate}
-            </p> */}
       </div>
       <div>
         <h2 className="text-2xl font-semibold mt-3 md:mt-1">{blog.title}</h2>
