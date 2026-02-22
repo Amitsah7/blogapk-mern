@@ -46,7 +46,7 @@ const CommentBox = ({ selectedBlog }) => {
   useEffect(() => {
     const getAllCommentsOfBlog = async () => {
       try {
-        const res = await API.get(`/api/v1/comment/${selectedBlog._id}/comment/all`);
+        const res = await API.get(`/api/v1/comment/${selectedBlog?._id}/comment/all`);
         const data = res.data.comments;
         dispatch(setComment(data));
       } catch (error) {
@@ -58,7 +58,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const commentHandler = async () => {
     try {
-      const res = await API.post(`/api/v1/comment/${selectedBlog._id}/create`, { content }, {
+      const res = await API.post(`/api/v1/comment/${selectedBlog?._id}/create`, { content }, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -74,7 +74,7 @@ const CommentBox = ({ selectedBlog }) => {
         }
         dispatch(setComment(updatedCommentData));
 
-        const updatedBlogData = blog.map((p) => p._id === selectedBlog._id ? 
+        const updatedBlogData = blog.map((p) => p?._id === selectedBlog?._id ? 
         { ...p, comments: updatedCommentData } : p
         );
         dispatch(setBlog(updatedBlogData));
@@ -95,7 +95,7 @@ const CommentBox = ({ selectedBlog }) => {
       );
       if (res.data.success) {
         const updatedCommentData = comment.filter(
-        (item) => item._id !== commentId);
+        (item) => item?._id !== commentId);
         // console.log(updatedCommentData);
         dispatch(setComment(updatedCommentData));
         toast.success(res.data.message);
@@ -118,7 +118,7 @@ const CommentBox = ({ selectedBlog }) => {
 
       if (res.data.success) {
         const updatedCommentData = comment.map((item) =>
-          item._id === commentId ? { ...item, content: editedContent } : item,
+          item?._id === commentId ? { ...item, content: editedContent } : item,
         );
         dispatch(setComment(updatedCommentData));
         toast.success(res.data.message);
@@ -142,7 +142,7 @@ const CommentBox = ({ selectedBlog }) => {
         const updatedComment = res.data.updatedComment;
 
         const updatedCommentList = comment.map((item) =>
-          item._id === commentId ? updatedComment : item,
+          item?._id === commentId ? updatedComment : item,
         );
 
         dispatch(setComment(updatedCommentList));
@@ -204,7 +204,7 @@ const CommentBox = ({ selectedBlog }) => {
                           <div className="flex py-1 gap-2">
                             <Button
                               size="sm" className="cursor-pointer"
-                              onClick={() => editCommentHandler(item._id)}
+                              onClick={() => editCommentHandler(item?._id)}
                             >
                               Save
                             </Button>
@@ -225,9 +225,9 @@ const CommentBox = ({ selectedBlog }) => {
                         <div className="flex gap-2 items-center">
                           <div
                             className="flex gap-1 items-center cursor-pointer"
-                            onClick={() => likeCommentHandler(item._id)}
+                            onClick={() => likeCommentHandler(item?._id)}
                           >
-                            {item.likes.includes(user._id) ? (
+                            {item.likes.includes(user?._id) ? (
                               <FaHeart fill="red" />
                             ) : (
                               <FaRegHeart />
@@ -236,14 +236,14 @@ const CommentBox = ({ selectedBlog }) => {
                           </div>
                         </div>
                         <p
-                          onClick={() => handleReplyClick(item._id)}
+                          onClick={() => handleReplyClick(item?._id)}
                           className="text-sm cursor-pointer"
                         >Reply</p>
                       </div>
                     </div>
                   </div>
 
-                  {user._id === item?.userId?._id ? (
+                  {user?._id === item?.userId?._id ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger className="cursor-pointer">
                         <BsThreeDots />
@@ -251,7 +251,7 @@ const CommentBox = ({ selectedBlog }) => {
                       <DropdownMenuContent className="w-[180px]">
                         <DropdownMenuItem className="cursor-pointer"
                           onClick={() => {
-                            setEditingCommentId(item._id);
+                            setEditingCommentId(item?._id);
                             setEditedContent(item.content);
                           }}
                         >
@@ -260,7 +260,7 @@ const CommentBox = ({ selectedBlog }) => {
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           className="text-red-500 cursor-pointer"
-                          onClick={() => deleteComment(item._id)}
+                          onClick={() => deleteComment(item?._id)}
                         >
                           <Trash2 />
                           Delete
