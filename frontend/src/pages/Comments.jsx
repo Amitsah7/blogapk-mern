@@ -51,7 +51,7 @@ const Comments = () => {
                   <TableCell className="text-right flex gap-3 items-center justify-center">
                     <Eye
                       className="cursor-pointer"
-                      onClick={() => navigate(`/blogs/${comment.postId._id}`)}
+                      onClick={() => navigate(`/blogs/${comment.postId?._id}`)}
                     />
                   </TableCell>
                 </TableRow>

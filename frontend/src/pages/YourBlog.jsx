@@ -83,7 +83,7 @@ const YourBlog = () => {
                     />
                     <h1
                       className="hover:underline cursor-pointer w-[60px] md:w-full truncate"
-                      onClick={() => navigate(`/blogs/${item._id}`)}
+                      onClick={() => navigate(`/blogs/${item?._id}`)}
                     >
                       {item.title}
                     </h1>
@@ -99,7 +99,7 @@ const YourBlog = () => {
                       <DropdownMenuContent className="w-[180px]">
                         <DropdownMenuItem
                           onClick={() =>
-                            navigate(`/dashboard/write-blog/${item._id}`)
+                            navigate(`/dashboard/write-blog/${item?._id}`)
                           }
                           className="cursor-pointer"
                         >
@@ -108,7 +108,7 @@ const YourBlog = () => {
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           className="text-red-500 cursor-pointer"
-                          onClick={() => deleteBlog(item._id)}
+                          onClick={() => deleteBlog(item?._id)}
                         >
                           <Trash2 />
                           Delete

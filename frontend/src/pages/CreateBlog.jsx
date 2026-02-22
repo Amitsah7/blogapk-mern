@@ -36,11 +36,11 @@ const CreateBlog = () => {
             if(res.data.success) {
                 if(!blog) {
                     dispatch(setBlog([res.data.blog]))
-                    navigate(`/dashboard/write-blog/${res.data.blog._id}`)
+                    navigate(`/dashboard/write-blog/${res.data.blog?._id}`)
                     toast.success(res.data.message);
                 }
                 dispatch(setBlog([...blog, res.data.blog]))
-                navigate(`/dashboard/write-blog/${res.data.blog._id}`)
+                navigate(`/dashboard/write-blog/${res.data.blog?._id}`)
                 toast.success(res.data.message);
             } else {
                 toast.error("Something went wrong")

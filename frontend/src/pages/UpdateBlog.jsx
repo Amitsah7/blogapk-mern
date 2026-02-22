@@ -20,7 +20,7 @@ const UpdateBlog = () => {
   const params = useParams();
   const id = params.blogId;
   const { blog, loading } = useSelector((store) => store.blog);
-  const selectBlog = blog.find((blog) => blog._id === id);
+  const selectBlog = blog.find((blog) => blog?._id === id);
 
   const [publish, setPublish] = useState(false);
   const [content, setContent] = useState(selectBlog.description);

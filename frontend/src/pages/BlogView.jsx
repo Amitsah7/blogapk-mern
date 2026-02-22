@@ -28,7 +28,7 @@ const BlogView = () => {
   const { blog } = useSelector((store) => store.blog);
   const { user } = useSelector((store) => store.auth);
   const { comment } = useSelector(store => store.comment);
-  const selectedBlog = blog.find((blog) => blog._id === blogId);
+  const selectedBlog = blog.find((blog) => blog?._id === blogId);
   const [blogLike, setBlogLike] = useState(selectedBlog.likes.length);
   const [liked, setLiked] = useState(
     selectedBlog?.likes?.includes(user?._id) || false,
@@ -65,7 +65,7 @@ const BlogView = () => {
     try {
       const action = liked ? "dislike" : "like";
       const res = await API(
-        `/api/v1/blog/${selectedBlog._id}/${action}`,
+        `/api/v1/blog/${selectedBlog?._id}/${action}`,
         { withCredentials: true },
       );
       if (res.data.success) {
@@ -75,12 +75,12 @@ const BlogView = () => {
       }
       // apne blog ko update krunga
       const updatedBlogData = blog.map((p) =>
-        p._id === selectedBlog._id
+        p?._id === selectedBlog?._id
           ? {
               ...p,
               likes: liked
-                ? p.likes.filter((id) => id !== user._id)
-                : [...p.likes, user._id],
+                ? p.likes.filter((id) => id !== user?._id)
+                : [...p.likes, user?._id],
             }
           : p,
       );
@@ -227,7 +227,7 @@ const BlogView = () => {
                 <Bookmark className="h-4 w-4" />
               </Button>
               <Button
-                onClick={() => handleShare(selectedBlog._id)}
+                onClick={() => handleShare(selectedBlog?._id)}
                 variant="ghost"
                 size="sm"
                 className="cursor-pointer"

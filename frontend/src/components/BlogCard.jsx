@@ -17,7 +17,7 @@ const BlogCard = ({blog}) => {
       <h2 className="text-xl font-semibold  mt-1">{blog.title}</h2>
       <h3 className="text-gray-500 mt-1">{blog.subtitle}</h3>
       <Button
-        onClick={() => navigate(`/blogs/${blog._id}`)}
+        onClick={() => navigate(`/blogs/${blog?._id}`)}
         className="mt-4   px-4 py-2 rounded-lg text-sm cursor-pointer"
       >
         Read More
