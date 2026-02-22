@@ -4,6 +4,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import userLogo from "../assets/user.jpg"
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import { FaUserCircle } from "react-icons/fa";
 
 const ResponsiveMenu = ({openNav, setOpenNav, logoutHandler}) => {
 
