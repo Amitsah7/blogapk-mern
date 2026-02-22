@@ -15,7 +15,9 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", // local development
+        "https://blogapk-mern.vercel.app" // live frontend
+    ],
     credentials: true
 }))
 
